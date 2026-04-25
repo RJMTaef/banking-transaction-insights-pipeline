@@ -5,6 +5,13 @@ import os
 import random
 from datetime import datetime, timedelta
 
+import pandas as pd
+
+random.seed(42)
+
+RAW_DATA_PATH = "data/raw"
+
+os.makedirs(RAW_DATA_PATH, exist_ok=True)
 
 # Output files:
 # all in data folders, named as:
