@@ -55,6 +55,34 @@ customers_df.to_csv(
 
 print("customers.csv created successfully")
 
+#account setup
+account_types = ["CHECKING", "SAVINGS", "CREDIT"]
+account_statuses = ["ACTIVE", "CLOSED"]
+
+accounts = []
+
+for customer in customers:
+    num_accounts = random.randint(1, 3)
+
+    for _ in range(num_accounts):
+        account = {
+            "account_id": f"ACC{len(accounts)+1:04d}",
+            "customer_id": customer["customer_id"],
+            "account_type": random.choice(account_types),
+            "open_date": customer["signup_date"] + timedelta(days=random.randint(0, 100)),
+            "status": random.choice(account_statuses)
+        }
+
+        accounts.append(account)
+
+accounts_df = pd.DataFrame(accounts)
+
+accounts_df.to_csv(
+    os.path.join(RAW_DATA_PATH, "accounts.csv"),
+    index=False
+)
+
+print("accounts.csv created successfully")
 
 # Output files:
 # all in data folders, named as:
