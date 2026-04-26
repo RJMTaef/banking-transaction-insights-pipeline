@@ -84,6 +84,34 @@ accounts_df.to_csv(
 
 print("accounts.csv created successfully")
 
+transaction_types = ["DEBIT", "CREDIT"]
+merchant_countries = ["Canada", "USA", "England", "India", "Bangladesh", "UAE", "Singapore"]
+
+transactions = []
+
+for account in accounts:
+    num_transactions = random.randint(5, 25)
+
+    for _ in range(num_transactions):
+        transaction = {
+            "transaction_id": f"TXN{len(transactions)+1:06d}",
+            "account_id": account["account_id"],
+            "transaction_date": account["open_date"] + timedelta(days=random.randint(0, 700)),
+            "amount": round(random.uniform(10, 5000), 2),
+            "transaction_type": random.choice(transaction_types),
+            "merchant_country": random.choice(merchant_countries)
+        }
+
+        transactions.append(transaction)
+
+transactions_df = pd.DataFrame(transactions)
+
+transactions_df.to_csv(
+    os.path.join(RAW_DATA_PATH, "transactions.csv"),
+    index=False
+)
+
+print("transactions.csv created successfully")
 # Output files:
 # all in data folders, named as:
 # customers.csv, accounts.csc, transactions.csv
