@@ -111,7 +111,34 @@ transactions_df.to_csv(
     index=False
 )
 
+
+# Duplicate records
+duplicate_transactions = random.sample(transactions, 10)
+transactions.extend(duplicate_transactions)
+
+# Missing values
+for transaction in random.sample(transactions, 10):
+    transaction["merchant_country"] = None
+
+# Large outliers
+for transaction in random.sample(transactions, 8):
+    transaction["amount"] = round(random.uniform(10000, 50000), 2)
+
+# Negative invalid values
+for transaction in random.sample(transactions, 5):
+    transaction["amount"] = round(random.uniform(-5000, -10), 2)
+
+
+# --- CONVERT + SAVE ---
+transactions_df = pd.DataFrame(transactions)
+
+transactions_df.to_csv(
+    os.path.join(RAW_DATA_PATH, "transactions.csv"),
+    index=False
+)
+
 print("transactions.csv created successfully")
+
 # Output files:
 # all in data folders, named as:
 # customers.csv, accounts.csc, transactions.csv
