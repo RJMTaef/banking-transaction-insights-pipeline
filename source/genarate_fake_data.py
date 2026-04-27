@@ -104,14 +104,6 @@ for account in accounts:
 
         transactions.append(transaction)
 
-transactions_df = pd.DataFrame(transactions)
-
-transactions_df.to_csv(
-    os.path.join(RAW_DATA_PATH, "transactions.csv"),
-    index=False
-)
-
-
 # Duplicate records
 duplicate_transactions = random.sample(transactions, 10)
 transactions.extend(duplicate_transactions)
@@ -129,7 +121,6 @@ for transaction in random.sample(transactions, 5):
     transaction["amount"] = round(random.uniform(-5000, -10), 2)
 
 
-# --- CONVERT + SAVE ---
 transactions_df = pd.DataFrame(transactions)
 
 transactions_df.to_csv(
