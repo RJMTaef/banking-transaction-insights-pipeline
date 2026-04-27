@@ -105,7 +105,7 @@ for account in accounts:
         transactions.append(transaction)
 
 # Duplicate records
-duplicate_transactions = random.sample(transactions, 10)
+duplicate_transactions = [transaction.copy() for transaction in random.sample(transactions, 10)]
 transactions.extend(duplicate_transactions)
 
 # Missing values
