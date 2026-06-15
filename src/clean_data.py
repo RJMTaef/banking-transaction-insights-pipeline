@@ -31,7 +31,7 @@ missing_after = transactions_df["merchant_country"].isna().sum()
 
 print(f"Missing merchant_country before: {missing_before}, after: {missing_after}")
 
-# --- REMOVE NEGATIVE AMOUNTS
+#remove negative ammounts
 negative_amount_count = (transactions_df["amount"] < 0).sum()
 
 transactions_df = transactions_df[transactions_df["amount"] >= 0]

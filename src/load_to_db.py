@@ -30,5 +30,3 @@ conn.commit()
 
 print("Cleaned data loaded into database successfully")
 
-
-    
